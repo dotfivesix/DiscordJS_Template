@@ -1,0 +1,11 @@
+{ 
+    "botPresence" : {
+        "status" : "online",
+        "statusType" : "PLAYING",
+        "statusText" : "with your life"
+    },
+    "embeds" : {
+        "default_color" : "#00FFFF",
+        "timestamps" : false
+    }
+}
