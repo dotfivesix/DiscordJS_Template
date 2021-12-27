@@ -81,7 +81,7 @@ class CustomCollector
 
             (this.#customRows.length === 0)
             ? disabledRows[0].addComponents(...this.#buttons.map(x => x.setDisabled(true)))
-            : disabledRows = this.#customRows.map(x => new MessageActionRow().addComponents(...x.setDisabled(true)));
+            : disabledRows = this.#customRows.map(x => new MessageActionRow().addComponents(...x.map(y => y.setDisabled(true))));
 
             this.#interaction.editReply({
                 embeds: [...this.#embeds],
