@@ -98,7 +98,7 @@ Edit **package.json** file as you see fit for production server and requirements
 I will keep adding common features to make development faster, you can also make and send PR. Some of the functions done are these.
 ### 1. CustomEmbed :
 If you remember setting default color of embeds in **config.json**, Yes ! It's that only, everytime you want to create an embed, if you hate giving same color to each embed you create ever, use this instead of MessageEmbed, you can overwrite afterall, This is nothing more than a class which extends MessageEmbed and just sets Default color, you can overwrite for specific embeds afterall !
-### 2. CustomCollector :
+### 2. CustomButtonCollector :
 Who doesn't hate writing 56 lines of code just to collect button/interactions, you have to create filters/messageComponentCollector/whatsoever then manage collector on collect and end states while also handling exceptions. That's so time consuming. That's why this class Exists. It's as much customizable as any normal collector and will be helpful in most cases.
 ```js
 const {default_color} = require("../config.json").embeds;
@@ -129,18 +129,17 @@ This is how much coding is required just to create a simple collector which will
 ```js
 const embed = new CustomEmbed({title : "Mmmmmm"});
 const btn = new MessageButton({label:"E ?", style:"SUCCESS", customId:"e"});
-const msg = new CustomCollector(interaction, [embed], [btn]);
+const msg = new CustomButtonCollector(interaction, [embed], [[btn]]);
 
 msg.start(async i => {
     await i.reply("Monke !");
 });
 ```
-This is how easy it is, with functions.
+This is how easy it is, with functions. (Note that in 3rd argument, we use 2D array, 1 represents row and other buttons)
 #### Now you might be thinking "Ok, but this isn't costumizable", No wait...
 ```js
-const msg = new CustomCollector(interaction, [embed], [btn]);
+const msg = new CustomButtonCollector(interaction, [embed], [[btnA1, btnA2, btnA3], [btnB1, btnB2]]]);
 msg
-    .setCustomRows([[btnA1, btnA2, btnA3], [btnB1, btnB2]])
     .setFilter(i => i.user.id === "7653543635645")
     .setMax(5)
     .setTime(30000) // 30 seconds
