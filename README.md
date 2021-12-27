@@ -138,7 +138,7 @@ msg.start(async i => {
 This is how easy it is, with functions. (Note that in 3rd argument, we use 2D array, 1 represents row and other buttons)
 #### Now you might be thinking "Ok, but this isn't costumizable", No wait...
 ```js
-const msg = new CustomButtonCollector(interaction, [embed], [[btnA1, btnA2, btnA3], [btnB1, btnB2]]]);
+const msg = new CustomButtonCollector(interaction, [embed], [[btnA1, btnA2, btnA3], [btnB1, btnB2]]);
 msg
     .setFilter(i => i.user.id === "7653543635645")
     .setMax(5)
