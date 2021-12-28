@@ -21,7 +21,7 @@ for (const file of commandFiles) {
 
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log(`${client.user.tag}is Online!`);
 	client.user.setStatus(status);
 	if (statusType && statusText) client.user.setActivity(statusText, {type:statusType});
 });
