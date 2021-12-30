@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "@discordjs/builders": "^0.10.0",
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "discord-api-types": "^0.26.0",
+    "discord.js": "^13.4.0",
+    "discordjs-button-pagination": "^2.0.1",
+    "dotenv": "^10.0.0",
+    "jest": "^27.4.5",
+    "save-dev": "^0.0.1-security",
+    "typescript": "^4.5.4"
+  },
+  "name": "discordjs_bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest ./dist/tests/",
+    "start": "node ./dist/index.js",
+    "build": "[ -d \"/dist/\" ] && {rm -r ./dist/ && tsc} || tsc",
+    "deploy": "node ./dist/deploy-commands.js",
+    "restart": "npm run build && npm run deploy && npm run start"
+  },
+  "keywords": [],
+  "author": "Katsuke",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@types/jest": "^27.0.3"
+  }
+}
