@@ -1,37 +1,50 @@
-# DiscordJS Starter Template
+# DiscordTS Starter Template
 ### A simple template for beginners and lazy programmers who just want to build slash command bots quickly
-##### Note : *There is another repository for Typescript Discord Template*
+##### Note : *There is another repository for [Javascript Discord Template](https://github.com/KatsukeX56/DiscordJS_Template)*
 
 ## Why this when we have discord.js ?
 If you have worked with discord.js before, you know that we have to install mulitple libraries like @discord/rest @discord/builders etc... to start, not only that, a seperate file for deployement of slash commands is required.
 ***Lets all be honest*** , We programmers hate memorizing syntax thats why coders are considered best at googling ツ and that's the whole reason why this exists
 
 ## How to get started ?
-*Make sure you have Node.js's latest LTS version installed*
+*Make sure you have Node.js's latest LTS version installed and typescript as well*
  Clone this repository and you 2 simple commmands.
-```
+```bash
 $ npm install
-$ node index.js
+$ npm run restart
+```
+Here are other commands
+```bash
+$ npm run start
+# Use this command to start the bot
+$ npm run deploy
+# Use this command to deploy slash commands, use it only after creating a new slash command
+$ npm run build
+# Use this script to compile ts to js (you can use tsc --watch alternatively in other terminal but must use this to restructure after deleting any ts file
+$ bash message-command.sh || bash slash-command.sh
+# Use anyone of these to get boilerplate of code
 ```
 ## Just a template ?
 #### No, this project is more than just a starter template, as I mentioned above it's for lazy programmers, means everything can be done pretty fast here.
 ### How to create first command ?
-You can delete **dummy.js** from commands folder if you don't want boilerplate for commands. Yes I know you are lazy to even copy paste, there's a bash script **create-command.sh** Just execute it (Make sure you are in the directory of bot like "C:\DiscordBots\DiscordJS_Template\") and input command name of command (e.g "ping"). Incase it doesn't work, just create new file of the name of comamnd everytime and copy paste boilerplate code from "dummy.js" each time
+You can delete **hi** folders from commands/slash and commands/message if you don't want boilerplate for commands. Yes I know you are lazy to even copy paste, there's a bash script **slash/message-command.sh** Just execute it (Make sure you are in the directory of bot like "C:\DiscordBots\DiscordJS_Template\") and input command name of command (e.g "ping").
+
+## Make Sure
+- src has a folder named "commands" with only 2 subfoldes "slash" and "message"
+- src/commands/slash/your_command and the file inside it have the same nam
+- (Incase of slash command) There should be a {command_name}.cmd.ts file exporting a variable "command" which is of type SlashCommandBuilder, make your slash command there
+- every {command_name}.ts export an async function execute with client and interaction as params
+
 ```bash
 $ code .
 ```
-Open any IDE/Editor you like, and add some description to the command
-#### Note : It is important to add description atleast and you are free to edit any file except
-- Any file in **functions** folder
-- **"commands"** folder's name
-- .gitignore
-- **deploy-commands.js**, **index.js** and **functions.js**
-#### **You can delete functions.js and functions folder if you don't want support and just a template**
+#### **You can delete src/functions folder if you don't want support and just a template**
 
 ## Configuration
 Open config.json and edit as per your need :
 ```js
-{ 
+{
+    "prefix" : "!", // Leave empty if you don't want any (not recommended, if you want every message better modify src/events/messageCreate.ts
     "botPresence" : {
         "status" : "online", // "dnd" or "invisible" or "idle"
         "statusType" : "PLAYING", // "WATCHING" or "COMPETING" or "LISTENING"
@@ -42,7 +55,7 @@ Open config.json and edit as per your need :
     }
 }
 ```
-There is no need to even touch **index.js** or **deploy-commands**
+There is no need to even touch **index.ts** or **deploy-commands.ts**
 Once you are done with **config.json** now create a file called .env using
 ```bash
 $ touch .env
@@ -65,24 +78,6 @@ Fill the fields, if you don't have/know :
 8. Under Bot permissions section, set permissions of bot, if you don't know/haven't decided yet and you have enough power, just mark administrator and copy the link generated below.
 9. Paste that link in browser, and add the bot to the same server you copied ID from.
 #### DONE !
-### Test the bot
-```
-$ node deploy-commands.js
-$ node index.js
-Ready !
-```
-Use the two commands above, if you followed all steps carefully till now, you should see "Ready !".
-Type /dummy and you will receive "Hello Pepo !", You are all done now ! Delete Dummy and happy coding.
-
-## Workflow
-- Run 'create-command.sh"
-- Input command's name and open file
-- Set description and Slash command according to your need, for help [refer to this](https://discordjs.guide/interactions/registering-slash-commands.html)
-- `$ node deploy-commands.js` Try deploying command before starting to code interaction and after coding the slash builder command, so you know from where bug is coming from (Incase)
-- ~~Happy~~ Coding
-- `$ node index.js` debug, test etc...
-#### Repeat Till Bot is Completed !
-##### ***Please Note that I wouldn't recommend you code whole command in [command].js only if it's complicated, You can create folders, import export functions, to avoid spaghetti code. However don't create any folder or such in commands folder, create a separate folder for that outside.***
 
 ## Production
 Once the bot is ready for production, you sure want to deploy slash commands for all servers and not just your development server. For that, comment out last 3 lines of deploy-commands.js and add below :
