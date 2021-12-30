@@ -27,11 +27,11 @@ $ bash message-command.sh || bash slash-command.sh
 ## Just a template ?
 #### No, this project is more than just a starter template, as I mentioned above it's for lazy programmers, means everything can be done pretty fast here.
 ### How to create first command ?
-You can delete **hi** folders from commands/slash and commands/message if you don't want boilerplate for commands. Yes I know you are lazy to even copy paste, there's a bash script **slash/message-command.sh** Just execute it (Make sure you are in the directory of bot like "C:\DiscordBots\DiscordJS_Template\") and input command name of command (e.g "ping").
+You can delete **hi** folders from commands/slash and commands/message if you don't want boilerplate for commands. Yes I know you are lazy to even copy paste, there are 2 bash scripts **slash/message-command.sh** Just execute the one you desire to create command of (Make sure you are in the directory of bot like "C:\DiscordBots\DiscordJS_Template\") and input command name of command (e.g "ping").
 
 ## Make Sure
 - src has a folder named "commands" with only 2 subfoldes "slash" and "message"
-- src/commands/slash/your_command and the file inside it have the same nam
+- src/commands/slash/your_command and the file inside it have the same name
 - (Incase of slash command) There should be a {command_name}.cmd.ts file exporting a variable "command" which is of type SlashCommandBuilder, make your slash command there
 - every {command_name}.ts export an async function execute with client and interaction as params
 
