@@ -1,7 +1,7 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
 const command = new SlashCommandBuilder()
                    .setName("hi")
                    .setDescription("Sends hello !")
 
-export {command};
+module.exports = {command};

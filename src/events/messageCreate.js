@@ -1,10 +1,13 @@
-import { Client, Message, Collection } from "discord.js";
-import fs from "fs";
-import path from "path";
-import { prefix } from "../config.json";
-interface MsgCmd { execute : (client:Client<boolean>, message: Message<boolean>) => any; }
+const { Client, Collection } = require("discord.js");
+const fs = require("fs");
+const path = require("path");
+const { prefix } = require("../config.json");
 
-module.exports = function(client:Client<boolean>)
+/**
+ * 
+ * @param {Client<boolean>} client 
+ */
+module.exports = function(client)
 {   
     const messageCommands = new Collection();
 
@@ -26,20 +29,20 @@ module.exports = function(client:Client<boolean>)
 
             if (message.author.bot) return;
 
-            let command:MsgCmd|undefined;
+            let command;
             // If there is no prefix
             if (!prefix)
             {
-                command = messageCommands.get(message.content.split(" ")[0]) as MsgCmd;
+                command = messageCommands.get(message.content.split(" ")[0]);
             }
-            if (message.content.startsWith(prefix) && client.user?.id !== message.author.id)
+            if (message.content.startsWith(prefix) && client.user.id !== message.author.id)
             {
-                if (prefix) command = messageCommands.get(message.content.split(prefix)[1].split(" ")[0]) as MsgCmd;
-                else command = messageCommands.get(message.content.split(" ")[0]) as MsgCmd;
+                if (prefix) command = messageCommands.get(message.content.split(prefix)[1].split(" ")[0]);
+                else command = messageCommands.get(message.content.split(" ")[0]);
             }
             
             
-            if (command?.execute)
+            if (command.execute)
             {
                 console.log("Inside statement");
                 try {
@@ -50,7 +53,6 @@ module.exports = function(client:Client<boolean>)
                 }
             }
             
-
         });
 
     });

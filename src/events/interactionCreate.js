@@ -1,10 +1,12 @@
-import { Client, CommandInteraction, CacheType, Collection } from "discord.js";
-import fs from "fs";
-import path from "path";
+const { Client, Collection } = require("discord.js");
+const fs = require("fs");
+const path = require("path");
 
-interface SlashCmd { execute : (client:Client<boolean>, interaction: CommandInteraction<CacheType>) => any; }
-
-module.exports = function(client:Client<boolean>)
+/**
+ * 
+ * @param {Client} client 
+ */
+module.exports = function(client)
 {   
     const slashCommands = new Collection();
 
@@ -27,7 +29,7 @@ module.exports = function(client:Client<boolean>)
     client.on("interactionCreate", async (interaction) => {
 
         if (!interaction.isCommand()) return;
-        const command:SlashCmd = slashCommands.get(interaction.commandName) as SlashCmd;
+        const command = slashCommands.get(interaction.commandName);
     
         if (!command) return;
     

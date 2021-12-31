@@ -6,17 +6,23 @@ do
     [ -d "./src/commands/message/$command" ] && echo "ERROR : Command already exists, delete the folder to create" && continue
     mkdir "./src/commands/message/$command"
     mkdir "./src/commands/message/$command/components"
-    touch "./src/commands/message/$command/$command.ts"
-    INDEX_CODE=$"import {Client, Message} from \"discord.js\";
+    touch "./src/commands/message/$command/$command.js"
+    INDEX_CODE=$"const {Client, Message} = require(\"discord.js\");
 
-async function execute(client:Client<boolean>, message:Message<boolean>)
+/**
+ * 
+ * @param {Client<boolean>} client 
+ * @param {Message<boolean>} message 
+ */
+async function execute(client, message)
 {
 
-    // Code here....
-
+    // Code here....   
+    
 
 }
 
-export {execute};"
-    echo "$INDEX_CODE" > "./src/commands/message/$command/$command.ts"
+module.exports = {execute};
+"
+    echo "$INDEX_CODE" > "./src/commands/message/$command/$command.js"
 done

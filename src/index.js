@@ -1,7 +1,7 @@
-import { Client, Collection, Intents, CommandInteraction, CacheType, Message } from 'discord.js';
-import dotenv from "dotenv";
-import path from "path";
-import fs from "fs";
+const { Client, Intents } = require('discord.js');
+const dotenv = require("dotenv");
+const path = require("path");
+const fs = require("fs");
 dotenv.config({path:path.resolve(__dirname, "..", ".env")});
 
 // Create a new client instance
